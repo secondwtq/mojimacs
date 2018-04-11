@@ -1,13 +1,26 @@
 
+;; Other bindings you should get used to:
+;;  * <C-hjkl> for window nav.
+
+;; TextMate-esque keys:
+;;  * <M-1234567890> for different workspaces
+;;  * <M-n/s/w>
+;;  * <M-N/W>
+;;  * <M-=-+> for text scaling
+
 ;; github.com/hlissner/doom-emacs/wiki/Customization
 ;; "Customize my keybindings"
 (map!
+
+
 	(:leader
+      (:desc "ALT. Buffer" :nv "TAB" #'evil-switch-to-windows-last-buffer)
+
 		(:desc "project" :prefix "p"
       ;; Spacemacs
 			:desc "？Buffer" 						:n "b" #'counsel-projectile-switch-to-buffer
 			:desc "？Project" 						:n "p" #'counsel-projectile-switch-project
-			:desc "KILL Buffer" 				:n "k" #'projectile-kill-buffers
+			:desc "❌KILL Buffer" 				:n "k" #'projectile-kill-buffers
 			:desc "？Files"							:n "f" #'counsel-projectile-find-file
 			:desc "？Recent" 						:n "r" #'projectile-recentf
       :desc "TREE"                :n "t" #'neotree-find-project-root)
@@ -111,7 +124,7 @@
       :desc "SAVE ALL"      :n "S" #'evil-write-all
       :desc "？"            :n "f" #'find-file
       :desc "？(literally)"  :n "l" #'find-file-literally
-      :desc "TREE"          :n "t" #'neotree-show
+      :desc "TREE"          :n "t" #'neotree-toggle
       :desc "？Recent"       :n "r" #'counsel-recentf
       )
 
@@ -150,6 +163,7 @@
 
   (:desc "window" :prefix "w"
     ;; Spacemacs
+    :desc "CLOSE"      :n "d" #'+workspace/close-window-or-workspace
     )
 
   ; (spacemacs/set-leader-keys
@@ -195,6 +209,94 @@
   ;   "w="  'balance-windows
   ;   "w+"  'spacemacs/window-layout-toggle
   ;   "w_"  'spacemacs/maximize-horizontally)
+
+    (:desc "layout" :prefix "l"
+      ;; since we don't have transient state in DOOM yet, we are just using leader keys
+      ;;  plus transient state for layouts doesn't seems to be useful for me
+      ;; Spacemacs
+      ;; TODO: what's the relationship between persp and eyebrowse?
+      ;;  I think the "workspaces" in Spacemacs are managed by eyebrowse
+      ;;  but it's using persp functions
+      :desc "NEXT"             :n "n" #'+workspace/switch-right
+      :desc "PREV"             :n "p" #'+workspace/switch-left
+      :desc "KILL"             :n "d" #'+workspace/delete
+
+      ;; extensions
+      :desc "NEW"              :n "c" #'+workspace/new
+      :desc "？"                :n "l" #'+workspace/switch-to
+      )
+
+  ; (spacemacs|define-transient-state layouts
+  ; :title "Layouts Transient State"
+  ; :hint-is-doc t
+  ; :dynamic-hint (spacemacs//layouts-ts-hint)
+  ; :bindings
+  ; ;; need to exit in case number doesn't exist
+  ; ("?" spacemacs//layouts-ts-toggle-hint)
+  ; ("1" spacemacs/persp-switch-to-1 :exit t)
+  ; ("2" spacemacs/persp-switch-to-2 :exit t)
+  ; ("3" spacemacs/persp-switch-to-3 :exit t)
+  ; ("4" spacemacs/persp-switch-to-4 :exit t)
+  ; ("5" spacemacs/persp-switch-to-5 :exit t)
+  ; ("6" spacemacs/persp-switch-to-6 :exit t)
+  ; ("7" spacemacs/persp-switch-to-7 :exit t)
+  ; ("8" spacemacs/persp-switch-to-8 :exit t)
+  ; ("9" spacemacs/persp-switch-to-9 :exit t)
+  ; ("0" spacemacs/persp-switch-to-0 :exit t)
+  ; ("C-1" spacemacs/persp-switch-to-1)
+  ; ("C-2" spacemacs/persp-switch-to-2)
+  ; ("C-3" spacemacs/persp-switch-to-3)
+  ; ("C-4" spacemacs/persp-switch-to-4)
+  ; ("C-5" spacemacs/persp-switch-to-5)
+  ; ("C-6" spacemacs/persp-switch-to-6)
+  ; ("C-7" spacemacs/persp-switch-to-7)
+  ; ("C-8" spacemacs/persp-switch-to-8)
+  ; ("C-9" spacemacs/persp-switch-to-9)
+  ; ("C-0" spacemacs/persp-switch-to-0)
+  ; ("<tab>" spacemacs/jump-to-last-layout)
+  ; ("<return>" nil :exit t)
+  ; ("C-h" persp-prev)
+  ; ("C-l" persp-next)
+  ; ("a" persp-add-buffer :exit t)
+  ; ("A" persp-import-buffers :exit t)
+  ; ("d" spacemacs/layouts-ts-close)
+  ; ("D" spacemacs/layouts-ts-close-other :exit t)
+  ; ("h" spacemacs/layout-goto-default :exit t)
+  ; ("L" persp-load-state-from-file :exit t)
+  ; ("o" spacemacs/select-custom-layout :exit t)
+  ; ("r" persp-remove-buffer :exit t)
+  ; ("R" spacemacs/layouts-ts-rename :exit t)
+  ; ("s" persp-save-state-to-file :exit t)
+  ; ("S" persp-save-to-file-by-names :exit t)
+  ; ("t" persp-temporarily-display-buffer :exit t)
+  ; ("w" spacemacs/workspaces-transient-state/body :exit t)
+  ; ("x" spacemacs/layouts-ts-kill)
+  ; ("X" spacemacs/layouts-ts-kill-other :exit t))
+
+  ; (:desc "workspace" :prefix "TAB"
+  ; :desc "Display tab bar"          :n "TAB" #'+workspace/display
+  ; :desc "New workspace"            :n "n"   #'+workspace/new
+  ; :desc "Load workspace from file" :n "l"   #'+workspace/load
+  ; :desc "Load last session"        :n "L"   (λ! (+workspace/load-session))
+  ; :desc "Save workspace to file"   :n "s"   #'+workspace/save
+  ; :desc "Autosave current session" :n "S"   #'+workspace/save-session
+  ; :desc "Switch workspace"         :n "."   #'+workspace/switch-to
+  ; :desc "Kill all buffers"         :n "x"   #'doom/kill-all-buffers
+  ; :desc "Delete session"           :n "X"   #'+workspace/kill-session
+  ; :desc "Delete this workspace"    :n "d"   #'+workspace/delete
+  ; :desc "Load session"             :n "L"   #'+workspace/load-session
+  ; :desc "Next workspace"           :n "]"   #'+workspace/switch-right
+  ; :desc "Previous workspace"       :n "["   #'+workspace/switch-left
+  ; :desc "Switch to 1st workspace"  :n "1"   (λ! (+workspace/switch-to 0))
+  ; :desc "Switch to 2nd workspace"  :n "2"   (λ! (+workspace/switch-to 1))
+  ; :desc "Switch to 3rd workspace"  :n "3"   (λ! (+workspace/switch-to 2))
+  ; :desc "Switch to 4th workspace"  :n "4"   (λ! (+workspace/switch-to 3))
+  ; :desc "Switch to 5th workspace"  :n "5"   (λ! (+workspace/switch-to 4))
+  ; :desc "Switch to 6th workspace"  :n "6"   (λ! (+workspace/switch-to 5))
+  ; :desc "Switch to 7th workspace"  :n "7"   (λ! (+workspace/switch-to 6))
+  ; :desc "Switch to 8th workspace"  :n "8"   (λ! (+workspace/switch-to 7))
+  ; :desc "Switch to 9th workspace"  :n "9"   (λ! (+workspace/switch-to 8))
+  ; :desc "Switch to last workspace" :n "0"   #'+workspace/switch-to-last)
 
     )
   )
