@@ -2,3 +2,6 @@
 ;;; config/secondwtq/packages.el
 
 ; (package! eyebrowse)
+
+(package! flycheck-ocaml)
+(package! ocp-indent)

@@ -39,7 +39,7 @@
 
 ;; how she interacts
 ;; github.com/hlissner/doom-emacs/tree/master/modules/completion/company
-(require 'company)
+;; (require 'company)
 (after! company
     (setq company-idle-delay 0.2
         company-minimum-prefix-length 1))
@@ -50,6 +50,18 @@
 (after! neotree
   (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
   )
+
+;; (require 'smartparens)
+(after! smartparens
+  (progn (sp-local-pair 'tuareg-mode "'" nil :actions nil)
+  (sp-local-pair 'tuareg-mode "`" nil :actions nil)))
+;; (require 'merlin)
+(require 'flycheck-ocaml)
+(after! merlin
+  (progn (setq merlin-error-after-save nil)
+    (after! flycheck-ocaml (flycheck-ocaml-setup))))
+(after! flycheck-ocaml
+  (add-hook 'tuareg-mode-hook #'flycheck-mode))
 
 ;; PROBLEMS:
 ;;  * Modeline: shorter, don't use monospace font, also need more customization
