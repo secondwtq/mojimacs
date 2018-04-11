@@ -10,6 +10,7 @@
       (neotree-find origin-buffer-file-name))))
 
 (load! +bindings)
+(load! env)
 
 ;; how she looks
 (setq doom-theme 'doom-one-light)
@@ -21,16 +22,16 @@
 (setq doom-unicode-font (font-spec :family "Source Han Serif SC"))
 ;; it goes like 天地玄黄 宇宙洪荒 日月盈昃 晨宿列张
 
-;; TODO: not portable ...
-(let ((paths '(
-               "/Users/ooolive/.opam/4.06.1/bin"
-               "/Users/ooolive/.stack/snapshots/x86_64-osx/lts-9.1/8.0.2/bin"
-               "/Users/ooolive/.nvm/versions/node/v7.7.2/bin"
-               )))
-  (setenv "PATH" (concat (mapconcat 'identity paths ":") ":" (getenv "PATH")))
+;;(let ((paths '(
+;;               "/Users/ooolive/.opam/4.06.1/bin"
+;;               "/Users/ooolive/.stack/snapshots/x86_64-osx/lts-9.1/8.0.2/bin"
+;;               "/Users/ooolive/.nvm/versions/node/v7.7.2/bin"
+;;               )))
+  (setenv "PATH" (concat (mapconcat 'identity secondwtq-paths ":") ":" (getenv "PATH")))
   ;; can't we propagate the new "PATH" env. automatically?
   (setq eshell-path-env (getenv "PATH"))
-  (setq exec-path (append paths exec-path)))
+  (setq exec-path (append secondwtq-paths exec-path))
+;;)
 
 (setq-default line-spacing 5)
 (setq +doom-modeline-height 1)

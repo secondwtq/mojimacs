@@ -125,6 +125,8 @@
       :desc "？"            :n "f" #'find-file
       :desc "？(literally)"  :n "l" #'find-file-literally
       :desc "TREE"          :n "t" #'neotree-toggle
+      ;; recentf-open-files opens a fullscreen dialog with ID selection ...
+      ;;  not quite Spacemacy, so use the counsel one
       :desc "？Recent"       :n "r" #'counsel-recentf
       )
 
