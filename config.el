@@ -47,8 +47,13 @@
 (nlinum-relative-on)
 (setq nlinum-relative-redisplay-delay 0)
 
+(after! neotree
+  (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
+  )
+
 ;; PROBLEMS:
-;;  * Modeline: shorter, don't use monospace font
+;;  * Modeline: shorter, don't use monospace font, also need more customization
+;;  * is there a theme with #ffffff background? I'd like to have one here
 ;;  * evil-goggles does not seem to work
 ;;  * better Dashboard
 ;;  * how to do comment?
@@ -60,6 +65,7 @@
 ;;  * a little bit of spell checking is great
 ;;  * line number too wide
 ;;  * I want to have aliases for projects just for easy searching
-;;  * can we hide .DS_Store in neotree?
+;;  * can we hide .DS_Store in neotree? √
 ;;  * need relative line number √
+;;  * indentation when editing OCaml is very strange
 
