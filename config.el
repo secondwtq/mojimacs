@@ -51,20 +51,21 @@
   (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
   )
 
-;; (require 'smartparens)
 (after! smartparens
   (progn (sp-local-pair 'tuareg-mode "'" nil :actions nil)
   (sp-local-pair 'tuareg-mode "`" nil :actions nil)))
-;; (require 'merlin)
-(require 'flycheck-ocaml)
-(after! merlin
-  (progn (setq merlin-error-after-save nil)
-    (after! flycheck-ocaml (flycheck-ocaml-setup))))
-;; (after! flycheck-ocaml
-;;   (add-hook 'tuareg-mode-hook #'flycheck-mode))
 
-(add-hook! tuareg-mode
-  (progn (ocp-setup-indent) (flycheck-mode)))
+(def-package! ocp-indent
+  :after tuareg
+  :config
+  (ocp-setup-indent))
+
+(def-package! flycheck-ocaml
+  :after merlin
+  :config
+  (setq merlin-error-after-save nil)
+  (add-hook 'merlin-mode-hook #'flycheck-mode)
+  (flycheck-ocaml-setup))
 
 ;; PROBLEMS:
 ;;  * Modeline: shorter, don't use monospace font, also need more customization
