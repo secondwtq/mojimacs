@@ -60,8 +60,11 @@
 (after! merlin
   (progn (setq merlin-error-after-save nil)
     (after! flycheck-ocaml (flycheck-ocaml-setup))))
-(after! flycheck-ocaml
-  (add-hook 'tuareg-mode-hook #'flycheck-mode))
+;; (after! flycheck-ocaml
+;;   (add-hook 'tuareg-mode-hook #'flycheck-mode))
+
+(add-hook! tuareg-mode
+  (progn (ocp-setup-indent) (flycheck-mode)))
 
 ;; PROBLEMS:
 ;;  * Modeline: shorter, don't use monospace font, also need more customization
