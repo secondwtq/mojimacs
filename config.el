@@ -1,5 +1,7 @@
 ;;; config/secondwtq/config.el -*- lexical-binding: t; -*-
 
+(load! env)
+
 ;; from Spacemacs layers/+spacemacs/spacemacs-ui-visual/funcs.el
 (defun neotree-find-project-root ()
   (interactive)
@@ -10,7 +12,6 @@
       (neotree-find origin-buffer-file-name))))
 
 (load! +bindings)
-(load! env)
 
 ;; how she looks
 (setq doom-theme 'doom-one-light)
@@ -51,21 +52,35 @@
   (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
   )
 
-;; (require 'smartparens)
 (after! smartparens
-  (progn (sp-local-pair 'tuareg-mode "'" nil :actions nil)
-  (sp-local-pair 'tuareg-mode "`" nil :actions nil)))
-;; (require 'merlin)
-(require 'flycheck-ocaml)
-(after! merlin
-  (progn (setq merlin-error-after-save nil)
-    (after! flycheck-ocaml (flycheck-ocaml-setup))))
-;; (after! flycheck-ocaml
-;;   (add-hook 'tuareg-mode-hook #'flycheck-mode))
+  (sp-with-modes 'tuareg-mode
+    (sp-local-pair "'" nil :actions nil)
+    (sp-local-pair "`" nil :actions nil)))
 
-(add-hook! tuareg-mode
-  (progn (ocp-setup-indent) (flycheck-mode)))
+; (after! merlin
+;   (set! :company-backend 'tuareg-mode '(merlin-company-backend)))
 
+(add-hook! merlin-mode #'flycheck-mode)
+;; TODO: other way to enable company?
+;;  looks none of the DOOM modules is adding this hook manually
+; (add-hook! merlin-mode #'company-mode)
+
+(def-package! flycheck-ocaml
+  :after merlin
+  :config
+  (progn
+    (setq merlin-error-after-save nil)
+    (flycheck-ocaml-setup)))
+
+(def-package! ocp-indent
+  :after tuareg
+  :hook (tuareg-mode . ocp-setup-indent))
+
+;; ENVIRONMENT FOR:
+;;  OCaml, Haskell, C/C++, TypeScript, Emacs Lisp
+;;  LaTeX, Markdown, Org
+;;  maybe Ruby, Rust, Elm, ASM, LLVM, Shaders, Shell
+;;
 ;; PROBLEMS:
 ;;  * Modeline: shorter, don't use monospace font, also need more customization
 ;;  * is there a theme with #ffffff background? I'd like to have one here
@@ -75,7 +90,8 @@
 ;;  * do not confirm on exit
 ;;  * I don't like octicons for neotree
 ;;  * the completion popup is messed up
-;;  * exec-path broken, cannot find node, eshell cannot run jbuilder ... (so how it finds ocamlmerlin?)
+;;  * exec-path broken, cannot find node, eshell cannot run jbuilder ... (so how it finds ocamlmerlin?) √
+;;  * better handling of different environments (continuation of the exec-path problem)
 ;;  * company-tide gives no type information
 ;;  * a little bit of spell checking is great
 ;;  * line number too wide
@@ -83,4 +99,3 @@
 ;;  * can we hide .DS_Store in neotree? √
 ;;  * need relative line number √
 ;;  * indentation when editing OCaml is very strange
-
