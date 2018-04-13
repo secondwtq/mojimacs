@@ -35,6 +35,7 @@
 ;;)
 
 (setq-default line-spacing 5)
+(setq scroll-margin 3)
 (setq +doom-modeline-height 1)
 ; (setq-default tide-node-executable "/Users/ooolive/.nvm/versions/node/v7.7.2/bin/node")
 
@@ -69,9 +70,10 @@
   (add-hook 'merlin-mode-hook #'flycheck-mode)
   (flycheck-ocaml-setup))
 
-(def-package! ocp-indent
-  :after tuareg
-  :hook (tuareg-mode . ocp-setup-indent))
+ ; '(linum ((t (:inherit default :foreground "#aaaeb1" :strike-through nil :underline nil :slant normal :weight normal :height 100 :width condensed :family "Avenir Next Condensed"))))
+ ; '(mode-line ((t (:background "#ffffff" :box nil :family "Lucida Grande"))))
+ ; '(nlinum-current-line ((t (:inherit linum :foreground "#1b2229" :slant normal :weight normal))))
+ ; '(nlinum-relative-current-face ((t (:inherit (hl-line linum) :foreground "#51667b" :weight semi-bold))))
 
 ;; ENVIRONMENT FOR:
 ;;  OCaml, Haskell, C/C++, TypeScript, Emacs Lisp
@@ -86,7 +88,7 @@
 ;;  * how to do comment?
 ;;  * do not confirm on exit
 ;;  * I don't like octicons for neotree
-;;  * the completion popup is messed up
+;;  * the completion popup is usually messed up
 ;;  * exec-path broken, cannot find node, eshell cannot run jbuilder ... (so how it finds ocamlmerlin?) √
 ;;  * better handling of different environments (continuation of the exec-path problem)
 ;;  * company-tide gives no type information
@@ -96,3 +98,9 @@
 ;;  * can we hide .DS_Store in neotree? √
 ;;  * need relative line number √
 ;;  * indentation when editing OCaml is very strange
+;;  * editing JavaScript is a little laggy
+;;  * when cursor is at top/bottom border, display more lines (scrolloff)
+;;  * <C-u/d> behavior is diff. from Vim (Vim moves the file, not the cursor, Evil only moves the cursor)
+;;  * global whitespace mode ... and its style ...
+;;  * line number can be in different font
+;;  * need easy-motion or avy
