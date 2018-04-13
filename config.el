@@ -57,20 +57,17 @@
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" nil :actions nil)))
 
-; (after! merlin
-;   (set! :company-backend 'tuareg-mode '(merlin-company-backend)))
-
-(add-hook! merlin-mode #'flycheck-mode)
-;; TODO: other way to enable company?
-;;  looks none of the DOOM modules is adding this hook manually
-; (add-hook! merlin-mode #'company-mode)
+(def-package! ocp-indent
+  :after tuareg
+  :config
+  (ocp-setup-indent))
 
 (def-package! flycheck-ocaml
   :after merlin
   :config
-  (progn
-    (setq merlin-error-after-save nil)
-    (flycheck-ocaml-setup)))
+  (setq merlin-error-after-save nil)
+  (add-hook 'merlin-mode-hook #'flycheck-mode)
+  (flycheck-ocaml-setup))
 
 (def-package! ocp-indent
   :after tuareg
