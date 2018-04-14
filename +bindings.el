@@ -7,6 +7,13 @@
 ;;  * <M-n/s/w>
 ;;  * <M-N/W>
 ;;  * <M-=-+> for text scaling
+;;  * <M-f> - swiper
+;;    <C-n/p>
+;;  * <C-s> - isearch, <C-r> (backward)
+
+;; Other keys:
+;; * <C-;>
+;; * <C-z> - evil-emacs-state
 
 ;; github.com/hlissner/doom-emacs/wiki/Customization
 ;; "Customize my keybindings"
@@ -94,7 +101,8 @@
       ;; :desc "？"             :n "b" #'helm-mini
       :desc "KILL"         :n "d" #'kill-this-buffer
       :desc "NEXT"         :n "n" #'next-buffer
-      :desc "PREV"         :n "p" #'previous-buffer)
+      :desc "PREV"         :n "p" #'previous-buffer
+      :desc "？"           :n "b" #'+ivy/switch-workspace-buffer)
 
   ; (spacemacs/set-leader-keys
   ; "TAB"   'spacemacs/alternate-buffer

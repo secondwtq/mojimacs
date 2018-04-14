@@ -34,10 +34,14 @@
   (setq exec-path (append secondwtq-paths exec-path))
 ;;)
 
-(setq-default line-spacing 5)
+(setq-default line-spacing 3)
 (setq scroll-margin 3)
 (setq +doom-modeline-height 1)
+(setq confirm-kill-emacs nil)
 ; (setq-default tide-node-executable "/Users/ooolive/.nvm/versions/node/v7.7.2/bin/node")
+
+(require 'fcitx)
+(fcitx-aggressive-setup)
 
 ;; how she interacts
 ;; github.com/hlissner/doom-emacs/tree/master/modules/completion/company
@@ -73,7 +77,7 @@
 (set-face-attribute
  'linum nil
  :foreground "#aaaeb1"
- :height 100
+ :height 110
  :family "Avenir Next Condensed")
 (set-face-attribute
  'nlinum-relative-current-face nil
@@ -116,3 +120,6 @@
 ;;  * line number can be in different font
 ;;  * need easy-motion or avy
 ;;  * editing elisp doesn't enable company by default
+;;  * Chinese support
+;;  * No linum in org-mode
+;;  * Do not "projectile file" on ~

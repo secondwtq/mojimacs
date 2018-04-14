@@ -5,3 +5,4 @@
 
 (package! flycheck-ocaml)
 (package! ocp-indent)
+(package! fcitx)
