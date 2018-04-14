@@ -70,10 +70,21 @@
   (add-hook 'merlin-mode-hook #'flycheck-mode)
   (flycheck-ocaml-setup))
 
- ; '(linum ((t (:inherit default :foreground "#aaaeb1" :strike-through nil :underline nil :slant normal :weight normal :height 100 :width condensed :family "Avenir Next Condensed"))))
- ; '(mode-line ((t (:background "#ffffff" :box nil :family "Lucida Grande"))))
- ; '(nlinum-current-line ((t (:inherit linum :foreground "#1b2229" :slant normal :weight normal))))
- ; '(nlinum-relative-current-face ((t (:inherit (hl-line linum) :foreground "#51667b" :weight semi-bold))))
+(set-face-attribute
+ 'linum nil
+ :foreground "#aaaeb1"
+ :height 100
+ :family "Avenir Next Condensed")
+(set-face-attribute
+ 'nlinum-relative-current-face nil
+ :foreground "#51667b"
+ :weight 'semi-bold
+ ; TODO: it's (hl-line linum)
+ :inherit 'linum)
+(set-face-attribute
+ 'mode-line nil
+ :background "#ffffff"
+ :family "Lucida Grande")
 
 ;; ENVIRONMENT FOR:
 ;;  OCaml, Haskell, C/C++, TypeScript, Emacs Lisp
@@ -104,3 +115,4 @@
 ;;  * global whitespace mode ... and its style ...
 ;;  * line number can be in different font
 ;;  * need easy-motion or avy
+;;  * editing elisp doesn't enable company by default
