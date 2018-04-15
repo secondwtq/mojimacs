@@ -34,7 +34,7 @@
   (setq exec-path (append secondwtq-paths exec-path))
 ;;)
 
-(setq-default line-spacing 3)
+(setq-default line-spacing 2)
 (setq scroll-margin 3)
 (setq +doom-modeline-height 1)
 (setq confirm-kill-emacs nil)
@@ -74,6 +74,40 @@
   (add-hook 'merlin-mode-hook #'flycheck-mode)
   (flycheck-ocaml-setup))
 
+(setq doom-line-number-pad-char ?\u2002)
+
+(setq whitespace-style
+      '(face tabs spaces trailing space-before-tab
+             newline indentation empty space-after-tab
+             space-mark tab-mark newline-mark lines))
+
+(setq whitespace-display-mappings
+      '(
+        (space-mark 32 [183] [46]) ; space - dot
+        (newline-mark 10 [8617 10])
+        (space-mark 160 [164] [95])
+        (tab-mark 9 [187 9] [92 9])
+        ))
+
+(global-whitespace-mode)
+
+(require 'color)
+  (set-face-attribute
+   'whitespace-space
+   nil
+   :background nil
+   :foreground (color-darken-name (face-background 'default) 20))
+  (set-face-attribute
+   'whitespace-newline
+   nil
+   :background nil
+   :foreground (color-darken-name (face-background 'default) 20))
+  ; (set-face-attribute
+  ;  'whitespace-line
+  ;  nil
+  ;  :background nil
+  ;  :foreground (color-darken-name (face-background 'default) 20))
+
 (set-face-attribute
  'linum nil
  :foreground "#aaaeb1"
@@ -101,7 +135,7 @@
 ;;  * evil-goggles does not seem to work
 ;;  * better Dashboard
 ;;  * how to do comment?
-;;  * do not confirm on exit
+;;  * do not confirm on exit √
 ;;  * I don't like octicons for neotree
 ;;  * the completion popup is usually messed up
 ;;  * exec-path broken, cannot find node, eshell cannot run jbuilder ... (so how it finds ocamlmerlin?) √
@@ -114,12 +148,16 @@
 ;;  * need relative line number √
 ;;  * indentation when editing OCaml is very strange
 ;;  * editing JavaScript is a little laggy
-;;  * when cursor is at top/bottom border, display more lines (scrolloff)
+;;  * when cursor is at top/bottom border, display more lines (scrolloff) √
 ;;  * <C-u/d> behavior is diff. from Vim (Vim moves the file, not the cursor, Evil only moves the cursor)
-;;  * global whitespace mode ... and its style ...
-;;  * line number can be in different font
+;;  * global whitespace mode ... and its style ... √
+;;  * line number can be in different font √
+;;  * line number can have unique bg/border (continuation of the linum issue)
 ;;  * need easy-motion or avy
 ;;  * editing elisp doesn't enable company by default
-;;  * Chinese support
+;;  * Chinese support √
 ;;  * No linum in org-mode
 ;;  * Do not "projectile file" on ~
+;;  * Some host-OS-wide (yes host-OS since Emacs IS AN OS by itself) hotkey to switch to Emacs & Browser & Terms & Notes ...
+;;  * Maybe we need another title text? or borderless window?
+;;  * use Treemacs instead of neotree
