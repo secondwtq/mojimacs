@@ -50,9 +50,6 @@
     (setq company-idle-delay 0.2
         company-minimum-prefix-length 1))
 
-(nlinum-relative-on)
-(setq nlinum-relative-redisplay-delay 0)
-
 (after! neotree
   (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
   )
@@ -89,6 +86,7 @@
         (tab-mark 9 [187 9] [92 9])
         ))
 
+(setq whitespace-line-column 84)
 (global-whitespace-mode)
 
 (require 'color)
@@ -96,29 +94,52 @@
    'whitespace-space
    nil
    :background nil
-   :foreground (color-darken-name (face-background 'default) 20))
+   :foreground (color-darken-name (face-background 'default) 10))
   (set-face-attribute
    'whitespace-newline
    nil
    :background nil
-   :foreground (color-darken-name (face-background 'default) 20))
+   :foreground (color-darken-name (face-background 'default) 12))
   ; (set-face-attribute
   ;  'whitespace-line
   ;  nil
   ;  :background nil
   ;  :foreground (color-darken-name (face-background 'default) 20))
 
+; (require 'nlinum)
+; (setq nlinum-relative-redisplay-delay 0)
+(setq doom-line-numbers-style 'visual)
+(setq-default display-line-numbers-width 3
+              display-line-numbers-widen t
+              display-line-numbers-current-absolute t)
+
+; brew install ttfautohint
+; brew tap caryll/tap
+; brew install otfcc-mac64
+; npm install
+; make custom-config family='Iosevka Linum' design='type v-zero-unslashed v-three-twoarks'
+; make custom
+
+; TODO: adapt to both Emacs 25 & 26
 (set-face-attribute
- 'linum nil
+ ; 'linum
+ 'line-number
+ nil
  :foreground "#aaaeb1"
  :height 110
- :family "Avenir Next Condensed")
+ :family "Iosevka Linum"
+ )
 (set-face-attribute
- 'nlinum-relative-current-face nil
+ ; 'nlinum-relative-current-face
+ 'line-number-current-line
+ nil
  :foreground "#51667b"
- :weight 'semi-bold
+ ; :weight 'semi-bold
  ; TODO: it's (hl-line linum)
- :inherit 'linum)
+ :inherit
+ ; 'linum
+ 'line-number
+ )
 (set-face-attribute
  'mode-line nil
  :background "#ffffff"
@@ -161,3 +182,4 @@
 ;;  * Some host-OS-wide (yes host-OS since Emacs IS AN OS by itself) hotkey to switch to Emacs & Browser & Terms & Notes ...
 ;;  * Maybe we need another title text? or borderless window?
 ;;  * use Treemacs instead of neotree
+;;  * whitespace + company-mode
