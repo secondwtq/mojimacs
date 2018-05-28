@@ -71,42 +71,45 @@
   (add-hook 'merlin-mode-hook #'flycheck-mode)
   (flycheck-ocaml-setup))
 
-(setq doom-line-number-pad-char ?\u2002)
+;; github.com/ocaml/tuareg/issues/162
+;; Missing function tuareg-abbrev-hook being called · Issue #162 · ocaml/tuareg
+(defun tuareg-abbrev-hook () ())
 
-(setq whitespace-style
-      '(face tabs spaces trailing space-before-tab
-             newline indentation empty space-after-tab
-             space-mark tab-mark newline-mark lines))
+;; (setq doom-line-number-pad-char ?\u2002)
 
-(setq whitespace-display-mappings
-      '(
-        (space-mark 32 [183] [46]) ; space - dot
-        (newline-mark 10 [8617 10])
-        (space-mark 160 [164] [95])
-        (tab-mark 9 [187 9] [92 9])
-        ))
+;; NOTE: whitespace-mode is a performance nightmare,
+;;  and have several bugs in action,
+;;  so it's disabled for now.
+;;
+;; (setq whitespace-style
+;;       '(face tabs spaces trailing space-before-tab
+;;              newline indentation empty space-after-tab
+;;              space-mark tab-mark newline-mark lines))
 
-(setq whitespace-line-column 84)
-(global-whitespace-mode)
+;; (setq whitespace-display-mappings
+;;       '(
+;;         (space-mark 32 [183] [46]) ; space - dot
+;;         (newline-mark 10 [8617 10])
+;;         (space-mark 160 [164] [95])
+;;         (tab-mark 9 [187 9] [92 9])
+;;         ))
 
-(require 'color)
-  (set-face-attribute
-   'whitespace-space
-   nil
-   :background nil
-   :foreground (color-darken-name (face-background 'default) 10))
-  (set-face-attribute
-   'whitespace-newline
-   nil
-   :background nil
-   :foreground (color-darken-name (face-background 'default) 12))
-  ; (set-face-attribute
-  ;  'whitespace-line
-  ;  nil
-  ;  :background nil
-  ;  :foreground (color-darken-name (face-background 'default) 20))
+;; (setq whitespace-line-column 84)
+;; (global-whitespace-mode)
 
-; (require 'nlinum)
+;; (require 'color)
+;;   (set-face-attribute
+;;    'whitespace-space
+;;    nil
+;;    :background nil
+;;    :foreground (color-darken-name (face-background 'default) 10))
+;;   (set-face-attribute
+;;    'whitespace-newline
+;;    nil
+;;    :background nil
+;;    :foreground (color-darken-name (face-background 'default) 12))
+
+;; ; (require 'nlinum)
 ; (setq nlinum-relative-redisplay-delay 0)
 (setq doom-line-numbers-style 'visual)
 (setq-default display-line-numbers-width 3
@@ -168,6 +171,7 @@
 ;;  * can we hide .DS_Store in neotree? √
 ;;  * need relative line number √
 ;;  * indentation when editing OCaml is very strange
+;;  * OCaml completion of `in` is also very strange ...
 ;;  * editing JavaScript is a little laggy
 ;;  * when cursor is at top/bottom border, display more lines (scrolloff) √
 ;;  * <C-u/d> behavior is diff. from Vim (Vim moves the file, not the cursor, Evil only moves the cursor)
