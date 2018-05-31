@@ -1,6 +1,6 @@
 ;;; config/secondwtq/config.el -*- lexical-binding: t; -*-
 
-(load! env)
+(load! "env")
 
 ;; from Spacemacs layers/+spacemacs/spacemacs-ui-visual/funcs.el
 (defun neotree-find-project-root ()
@@ -11,7 +11,7 @@
       (neotree-find (projectile-project-root))
       (neotree-find origin-buffer-file-name))))
 
-(load! +bindings)
+(load! "+bindings")
 
 ;; how she looks
 (setq doom-theme 'doom-one-light)
@@ -186,4 +186,5 @@
 ;;  * Some host-OS-wide (yes host-OS since Emacs IS AN OS by itself) hotkey to switch to Emacs & Browser & Terms & Notes ...
 ;;  * Maybe we need another title text? or borderless window?
 ;;  * use Treemacs instead of neotree
-;;  * whitespace + company-mode
+;;  * ~~whitespace + company-mode~~
+;;  * revive whitespace-mode
