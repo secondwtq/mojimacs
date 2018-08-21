@@ -17,6 +17,7 @@
 
 ;; github.com/hlissner/doom-emacs/wiki/Customization
 ;; "Customize my keybindings"
+;; github.com/hlissner/doom-emacs/blob/develop/modules/config/default/%2Bbindings.el
 (map!
 
 
@@ -25,10 +26,10 @@
 
 		(:desc "project" :prefix "p"
       ;; Spacemacs
-			:desc "？Buffer" 						:n "b" #'counsel-projectile-switch-to-buffer
-			:desc "？Project" 						:n "p" #'counsel-projectile-switch-project
+			:desc "？Buffer" 						:n "b" #'projectile-switch-to-buffer
+			:desc "？Project" 						:n "p" #'projectile-switch-project
 			:desc "❌KILL Buffer" 				:n "k" #'projectile-kill-buffers
-			:desc "？Files"							:n "f" #'counsel-projectile-find-file
+			:desc "？Files"							:n "f" #'projectile-find-file
 			:desc "？Recent" 						:n "r" #'projectile-recentf
       :desc "TREE"                :n "t" #'neotree-find-project-root)
 
@@ -102,7 +103,7 @@
       :desc "KILL"         :n "d" #'kill-this-buffer
       :desc "NEXT"         :n "n" #'next-buffer
       :desc "PREV"         :n "p" #'previous-buffer
-      :desc "？"           :n "b" #'+ivy/switch-workspace-buffer)
+      :desc "？"           :n "b" #'persp-switch-to-buffer)
 
   ; (spacemacs/set-leader-keys
   ; "TAB"   'spacemacs/alternate-buffer
@@ -132,10 +133,10 @@
       :desc "SAVE ALL"      :n "S" #'evil-write-all
       :desc "？"            :n "f" #'find-file
       :desc "？(literally)"  :n "l" #'find-file-literally
-      :desc "TREE"          :n "t" #'neotree-toggle
+      :desc "TREE"          :n "t" #'+treemacs/toggle
       ;; recentf-open-files opens a fullscreen dialog with ID selection ...
       ;;  not quite Spacemacy, so use the counsel one
-      :desc "？Recent"       :n "r" #'counsel-recentf
+      :desc "？Recent"       :n "r" #'recentf-open-files
       )
 
   ;   (spacemacs/set-leader-keys

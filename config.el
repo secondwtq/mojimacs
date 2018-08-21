@@ -1,6 +1,7 @@
 ;;; config/secondwtq/config.el -*- lexical-binding: t; -*-
 
 (load! "env")
+(load! "+theme")
 
 ;; from Spacemacs layers/+spacemacs/spacemacs-ui-visual/funcs.el
 (defun neotree-find-project-root ()
@@ -13,15 +14,21 @@
 
 (load! "+bindings")
 
+;; www.emacswiki.org/emacs/TransparentEmacs EmacsWiki: Transparent Emacs
+;; (push '(alpha . (96 . 95)) default-frame-alist)
+(push '(alpha . (97 . 96)) default-frame-alist)
+
 ;; how she looks
 (setq doom-theme 'doom-one-light)
 ;; mostly writes in monospace w/ aesthetics
 (setq doom-font (font-spec :family "Fira Code" :size 12))
-(setq doom-variable-pitch-font (font-spec :family "Lucida Grande"))
+(pcase (system-name)
+  ("eden-prime"
+    (setq doom-font (font-spec :family "Input Mono Narrow" :size 12))))
+(setq doom-variable-pitch-font (font-spec :family "Lucida Grande" :size 13))
 ;; (setq doom-big-font ())
 ;; a little knowledge of Chinese would be great
 (setq doom-unicode-font (font-spec :family "Source Han Serif SC"))
-;; it goes like 天地玄黄 宇宙洪荒 日月盈昃 晨宿列张
 
 ;;(let ((paths '(
 ;;               "/Users/ooolive/.opam/4.06.1/bin"
@@ -34,7 +41,7 @@
   (setq exec-path (append secondwtq-paths exec-path))
 ;;)
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 1)
 (setq scroll-margin 3)
 (setq +doom-modeline-height 1)
 (setq confirm-kill-emacs nil)
@@ -42,6 +49,9 @@
 
 (require 'fcitx)
 (fcitx-aggressive-setup)
+
+(require 'dtrt-indent)
+(dtrt-indent-mode 1)
 
 ;; how she interacts
 ;; github.com/hlissner/doom-emacs/tree/master/modules/completion/company
@@ -74,6 +84,11 @@
 ;; github.com/ocaml/tuareg/issues/162
 ;; Missing function tuareg-abbrev-hook being called · Issue #162 · ocaml/tuareg
 (defun tuareg-abbrev-hook () ())
+
+(after! fill-column-indicator
+  (setq fci-rule-color "#e0e0e0")
+  ; TODO: why this assignment does not work?
+  (setq fci-column 96))
 
 ;; (setq doom-line-number-pad-char ?\u2002)
 
@@ -129,8 +144,8 @@
  'line-number
  nil
  :foreground "#aaaeb1"
- :height 110
- :family "Iosevka Linum"
+ :height 72
+ :family "Iosevka Term"
  )
 (set-face-attribute
  ; 'nlinum-relative-current-face
@@ -147,6 +162,9 @@
  'mode-line nil
  :background "#ffffff"
  :family "Lucida Grande")
+
+(custom-set-faces
+  '(default ((t (:background "#ffffff")))))
 
 ;; ENVIRONMENT FOR:
 ;;  OCaml, Haskell, C/C++, TypeScript, Emacs Lisp
