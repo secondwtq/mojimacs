@@ -90,6 +90,8 @@
   ; TODO: why this assignment does not work?
   (setq fci-column 96))
 
+(setq recentf-exclude '("~$" "/tmp/" "/ssh:" "/sudo:"))
+
 ;; (setq doom-line-number-pad-char ?\u2002)
 
 ;; NOTE: whitespace-mode is a performance nightmare,
@@ -126,7 +128,7 @@
 
 ;; ; (require 'nlinum)
 ; (setq nlinum-relative-redisplay-delay 0)
-(setq doom-line-numbers-style 'visual)
+(setq display-line-numbers-type 'relative)
 (setq-default display-line-numbers-width 3
               display-line-numbers-widen t
               display-line-numbers-current-absolute t)
@@ -206,3 +208,7 @@
 ;;  * use Treemacs instead of neotree
 ;;  * ~~whitespace + company-mode~~
 ;;  * revive whitespace-mode
+;;
+;;  * ~~relative line number doesnot work~~
+;;  * ~~recentf cleaning requires root password ...~~
+;;  * why opening file w/ shell opens 2 windows ...

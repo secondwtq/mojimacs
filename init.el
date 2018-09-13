@@ -1,5 +1,9 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+(def-package-hook! evil
+  :post-init
+  (setq evil-want-integration t
+        evil-want-keybinding nil))
 
 (doom! :feature
       ;debugger          ; FIXME stepping through code, to help you add bugs
