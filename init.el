@@ -56,6 +56,7 @@
 
        :editor
       ;(format +onsave)  ; automated prettiness
+       ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
@@ -72,6 +73,7 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :tools
+      ;;ansible
       ;docker
        editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
@@ -83,6 +85,7 @@
        pdf               ; pdf enhancements
       ;prodigy          ; TODO managing external services & code builders
       ;rgb               ; creating color strings
+      ;terraform         ; infrastructure as code
        tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp
       ;wakatime
@@ -138,6 +141,7 @@
       ;solidity          ; do you need a blockchain? No.
        ;swift             ; who asked for emoji variables?
        web               ; the tubes
+       ;;vala              ; GObjective-C
 
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
@@ -164,4 +168,4 @@
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
-       (default +bindings +snippets +evil-commands))
+       (default +bindings +evil-commands))
