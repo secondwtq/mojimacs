@@ -5,4 +5,5 @@
 
 (package! flycheck-ocaml)
 (package! ocp-indent)
+; TODO: disable it in systems w/ IME
 (package! fcitx)

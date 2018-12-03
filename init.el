@@ -101,7 +101,7 @@
        data              ; config/data formats
       ;erlang            ; an elegant language for a more civilized age
        ;elixir            ; erlang done right
-       elm               ; care for a cup of TEA?
+       ;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;ess               ; emacs speaks statistics
        ;go                ; the hipster dialect
@@ -109,7 +109,7 @@
        ;hy                ; readability of scheme w/ speed of python
        ;idris             ;
        ;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;julia             ; a better, faster MATLAB
        latex             ; writing papers in Emacs has never been so fun
        ;ledger            ; an accounting system in Emacs
@@ -140,7 +140,7 @@
 	 )
       ;solidity          ; do you need a blockchain? No.
        ;swift             ; who asked for emoji variables?
-       web               ; the tubes
+       ;web               ; the tubes
        ;;vala              ; GObjective-C
 
        ;; Applications are complex and opinionated modules that transform Emacs

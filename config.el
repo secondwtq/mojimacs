@@ -21,10 +21,8 @@
 ;; how she looks
 (setq doom-theme 'doom-one-light)
 ;; mostly writes in monospace w/ aesthetics
-(setq doom-font (font-spec :family "Fira Code" :size 12))
-(pcase (system-name)
-  ("eden-prime"
-    (setq doom-font (font-spec :family "Input Mono Narrow" :size 12))))
+;; (setq doom-font (font-spec :family "Fira Code" :size 12))
+(setq doom-font (font-spec :family "Input Mono Narrow" :size 12 :weight 'regular))
 (setq doom-variable-pitch-font (font-spec :family "Lucida Grande" :size 13))
 ;; (setq doom-big-font ())
 ;; a little knowledge of Chinese would be great
@@ -47,6 +45,7 @@
 (setq confirm-kill-emacs nil)
 ; (setq-default tide-node-executable "/Users/ooolive/.nvm/versions/node/v7.7.2/bin/node")
 
+; TODO: disable it in systems w/ IME
 (require 'fcitx)
 (fcitx-aggressive-setup)
 
