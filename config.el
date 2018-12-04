@@ -84,6 +84,19 @@
 ;; Missing function tuareg-abbrev-hook being called · Issue #162 · ocaml/tuareg
 (defun tuareg-abbrev-hook () ())
 
+;; TODO: figure out the autoload problem ...
+(defun +ccls//enable ()
+  (when buffer-file-name
+    (require 'ccls)
+    (setq-local lsp-ui-sideline-show-symbol nil)
+    (lsp)))
+
+(def-package! ccls
+  :defer t
+  :init (add-hook! (c-mode c++-mode cuda-mode objc-mode) #'+ccls//enable)
+  :config
+  (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp))
+
 (after! fill-column-indicator
   (setq fci-rule-color "#e0e0e0")
   ; TODO: why this assignment does not work?
