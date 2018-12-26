@@ -98,6 +98,20 @@
   :config
   (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp))
 
+(def-package! llvm-mode
+  :load-path  "~/dotfiles/m-blobs")
+
+(def-package! tablegen-mode
+  :load-path "~/dotfiles/m-blobs"
+  :defer t
+  :mode "\\.td\\'"
+  :config
+  (map!
+   :map tablegen-mode-map
+   (:leader
+     :n "=" #'clang-format-region
+)))
+
 (after! fill-column-indicator
   (setq fci-rule-color "#e0e0e0")
   ; TODO: why this assignment does not work?

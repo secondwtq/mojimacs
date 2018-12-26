@@ -10,8 +10,8 @@
 ; TODO: disable it in systems w/ IME
 (package! fcitx)
 
-(package! llvm-mode)
-(package! tablegen-mode)
+(package! llvm-mode :ignore t)
+(package! tablegen-mode :ignore t)
 
 (package! spinner) ; required by lsp-mode
 (package! lsp-mode)
