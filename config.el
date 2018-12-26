@@ -28,6 +28,7 @@
 ;; a little knowledge of Chinese would be great
 (setq doom-unicode-font (font-spec :family "Source Han Serif SC"))
 
+
 ;;(let ((paths '(
 ;;               "/Users/ooolive/.opam/4.06.1/bin"
 ;;               "/Users/ooolive/.stack/snapshots/x86_64-osx/lts-9.1/8.0.2/bin"
@@ -57,7 +58,7 @@
 ;; (require 'company)
 (after! company
     (setq company-idle-delay 0.2
-        company-minimum-prefix-length 1))
+        company-minimum-prefix-length 3))
 
 (after! neotree
   (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
