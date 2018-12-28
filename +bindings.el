@@ -18,10 +18,22 @@
 ;; github.com/hlissner/doom-emacs/wiki/Customization
 ;; "Customize my keybindings"
 ;; github.com/hlissner/doom-emacs/blob/develop/modules/config/default/%2Bbindings.el
+;; github.com/hlissner/doom-emacs/blob/ce38a80cf81909b66a4f50ddac2396c49a7c4e0e/modules/config/default/%2Bbindings.el
 (map!
 
+ (:map override
+   "M-1"   (λ! (+workspace/switch-to 0))
+   "M-2"   (λ! (+workspace/switch-to 1))
+   "M-3"   (λ! (+workspace/switch-to 2))
+   "M-4"   (λ! (+workspace/switch-to 3))
+   "M-5"   (λ! (+workspace/switch-to 4))
+   "M-6"   (λ! (+workspace/switch-to 5))
+   "M-7"   (λ! (+workspace/switch-to 6))
+   "M-8"   (λ! (+workspace/switch-to 7))
+   "M-9"   (λ! (+workspace/switch-to 8))
+   "M-0" #'+workspace/switch-to-last)
 
-	(:leader
+    (:leader
       (:desc "ALT. Buffer" :nv "TAB" #'evil-switch-to-windows-last-buffer)
 
 		(:desc "project" :prefix "p"

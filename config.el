@@ -50,8 +50,10 @@
 (require 'fcitx)
 (fcitx-aggressive-setup)
 
-(require 'dtrt-indent)
-(dtrt-indent-mode 1)
+;; (require 'dtrt-indent)
+;; (dtrt-indent-mode 1)
+
+(global-visual-line-mode t)
 
 ;; how she interacts
 ;; github.com/hlissner/doom-emacs/tree/master/modules/completion/company
