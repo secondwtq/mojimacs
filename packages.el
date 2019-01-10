@@ -19,3 +19,5 @@
 (package! company-lsp)
 
 (package! ccls)
+
+(package! awesome-tab :recipe (:fetcher github :repo "manateelazycat/awesome-tab"))

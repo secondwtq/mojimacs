@@ -43,7 +43,7 @@
 (setq-default line-spacing 1)
 (setq scroll-margin 3)
 (setq +doom-modeline-height 1)
-(setq confirm-kill-emacs nil)
+;; (setq confirm-kill-emacs nil)
 ; (setq-default tide-node-executable "/Users/ooolive/.nvm/versions/node/v7.7.2/bin/node")
 
 ; TODO: disable it in systems w/ IME
@@ -114,10 +114,21 @@
      :n "=" #'clang-format-region
 )))
 
+(def-package! awesome-tab
+  :config
+  (set-face-attribute 'awesome-tab-default nil :height 88 :inherit 'default)
+  (awesome-tab-mode t))
+
 (after! fill-column-indicator
   (setq fci-rule-color "#e0e0e0")
   ; TODO: why this assignment does not work?
   (setq fci-column 96))
+
+(after! org
+  (set-face-attribute
+  'table-cell nil
+   :foreground "black"
+   :background "#ffffff"))
 
 (setq recentf-exclude '("~$" "/tmp/" "/ssh:" "/sudo:"))
 
