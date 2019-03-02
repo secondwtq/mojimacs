@@ -3,7 +3,24 @@
 
 ; (package! eyebrowse)
 
-(disable-packages! company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
+(disable-packages!
+ company-irony
+ company-irony-c-headers
+ flycheck-irony
+ irony
+ irony-eldoc
+ ivy-rtags
+ rtags
+ graphql-mode
+ dhall-mode
+ toml-mode
+ flycheck-cask ; enable that when you need to write some elisp package ...
+ nose
+ python-pytest
+ ob-rust
+ ob-translate
+ ob-mango
+ )
 
 (package! flycheck-ocaml)
 (package! ocp-indent)

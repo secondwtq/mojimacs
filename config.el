@@ -14,20 +14,32 @@
 
 (load! "+bindings")
 
+;; how she looks
 ;; www.emacswiki.org/emacs/TransparentEmacs EmacsWiki: Transparent Emacs
-;; (push '(alpha . (96 . 95)) default-frame-alist)
+;; (push '(alpha . (100 . 95)) default-frame-alist)
 (push '(alpha . (97 . 96)) default-frame-alist)
 
-;; how she looks
 (setq doom-theme 'doom-one-light)
 ;; mostly writes in monospace w/ aesthetics
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12))
-(setq doom-font (font-spec :family "Input Mono Narrow" :size 12 :weight 'regular))
+(setq doom-font (font-spec :family "Input Mono Narrow" :size 13 :weight 'regular))
 (setq doom-variable-pitch-font (font-spec :family "Lucida Grande" :size 13))
 ;; (setq doom-big-font ())
 ;; a little knowledge of Chinese would be great
 (setq doom-unicode-font (font-spec :family "Source Han Serif SC"))
 
+(set-face-attribute
+ 'mode-line nil
+ :background "#ffffff"
+ :family "Lucida Grande")
+
+(custom-set-faces
+  '(default ((t (:background "#ffffff")))))
+
+(setq-default line-spacing 1)
+(setq scroll-margin 3)
+(setq doom-modeline-height 20)
+; (setq-default tide-node-executable "/Users/ooolive/.nvm/versions/node/v7.7.2/bin/node")
 
 ;;(let ((paths '(
 ;;               "/Users/ooolive/.opam/4.06.1/bin"
@@ -40,12 +52,6 @@
   (setq exec-path (append secondwtq-paths exec-path))
 ;;)
 
-(setq-default line-spacing 1)
-(setq scroll-margin 3)
-(setq +doom-modeline-height 1)
-;; (setq confirm-kill-emacs nil)
-; (setq-default tide-node-executable "/Users/ooolive/.nvm/versions/node/v7.7.2/bin/node")
-
 ; TODO: disable it in systems w/ IME
 (require 'fcitx)
 (fcitx-aggressive-setup)
@@ -56,38 +62,28 @@
 (global-visual-line-mode t)
 
 ;; how she interacts
-;; github.com/hlissner/doom-emacs/tree/master/modules/completion/company
-;; (require 'company)
-(after! company
-    (setq company-idle-delay 0.2
-        company-minimum-prefix-length 3))
-
-(after! neotree
-  (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
-  )
 
 (after! smartparens
   (sp-with-modes 'tuareg-mode
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" nil :actions nil)))
 
-(def-package! ocp-indent
-  :after tuareg
-  :config
-  (ocp-setup-indent))
+(after! caml
+  (set-face-attribute
+        'caml-types-expr-face nil
+        :background "#fcd975"))
 
-(def-package! flycheck-ocaml
-  :after merlin
-  :config
-  (setq merlin-error-after-save nil)
-  (add-hook 'merlin-mode-hook #'flycheck-mode)
-  (flycheck-ocaml-setup))
+(after! org
+  (set-face-attribute
+  'table-cell nil
+   :foreground "black"
+   :background "#ffffff"))
 
 ;; github.com/ocaml/tuareg/issues/162
 ;; Missing function tuareg-abbrev-hook being called · Issue #162 · ocaml/tuareg
-(defun tuareg-abbrev-hook () ())
+;; (defun tuareg-abbrev-hook () ())
 
-;; TODO: figure out the autoload problem ...
+; TODO: figure out the autoload problem ...
 (defun +ccls//enable ()
   (when buffer-file-name
     (require 'ccls)
@@ -114,22 +110,33 @@
      :n "=" #'clang-format-region
 )))
 
+;; github.com/hlissner/doom-emacs/tree/master/modules/completion/company
+;; (require 'company)
+(after! company
+    (setq company-idle-delay 0.2
+        company-minimum-prefix-length 3))
+
+(after! neotree
+  (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
+  )
+
 (def-package! awesome-tab
   :config
-  (set-face-attribute 'awesome-tab-default nil :height 88 :inherit 'default)
+  (set-face-attribute 'awesome-tab-default nil :height 88 :background "#dfdfdf" :foreground "#dfdfdf" :inherit 'default)
+  (setq awesome-tab-background-color "#dfdfdf")
+  (set-face-attribute 'awesome-tab-selected nil :background "#dfdfdf" :foreground "#000000")
+  (set-face-attribute 'awesome-tab-unselected nil :background "#dfdfdf" :foreground "#666666")
   (awesome-tab-mode t))
+
+;; (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+;; (semantic-mode 1)
 
 (after! fill-column-indicator
   (setq fci-rule-color "#e0e0e0")
   ; TODO: why this assignment does not work?
   (setq fci-column 96))
 
-(after! org
-  (set-face-attribute
-  'table-cell nil
-   :foreground "black"
-   :background "#ffffff"))
-
+;; (setq confirm-kill-emacs nil)
 (setq recentf-exclude '("~$" "/tmp/" "/ssh:" "/sudo:"))
 
 ;; (setq doom-line-number-pad-char ?\u2002)
@@ -200,18 +207,11 @@
  ; 'linum
  'line-number
  )
-(set-face-attribute
- 'mode-line nil
- :background "#ffffff"
- :family "Lucida Grande")
-
-(custom-set-faces
-  '(default ((t (:background "#ffffff")))))
 
 ;; ENVIRONMENT FOR:
 ;;  OCaml, Haskell, C/C++, TypeScript, Emacs Lisp
 ;;  LaTeX, Markdown, Org
-;;  maybe Ruby, Rust, Elm, ASM, LLVM, Shaders, Shell
+;;  maybe Rust, ASM, LLVM, Shaders, Shell, Coq/Agda
 ;;
 ;; PROBLEMS:
 ;;  * Modeline: shorter, don't use monospace font, also need more customization
@@ -248,6 +248,7 @@
 ;;  * use Treemacs instead of neotree
 ;;  * ~~whitespace + company-mode~~
 ;;  * revive whitespace-mode
+;;  * stickyfunc w/ tabbar
 ;;
 ;;  * ~~relative line number doesnot work~~
 ;;  * ~~recentf cleaning requires root password ...~~

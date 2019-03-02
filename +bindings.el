@@ -14,6 +14,8 @@
 ;; Other keys:
 ;; * <C-;>
 ;; * <C-z> - evil-emacs-state
+;;
+;; * <TAB> - smart dispatch - yas, company
 
 ;; github.com/hlissner/doom-emacs/wiki/Customization
 ;; "Customize my keybindings"
@@ -323,3 +325,8 @@
 
     )
   )
+
+(map!
+    :n "gt" #'awesome-tab-forward-tab
+    :n "gT" #'awesome-tab-backward-tab
+ )

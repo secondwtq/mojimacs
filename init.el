@@ -18,7 +18,8 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto)           ; as-you-type code completion
+        +auto
+        +childframe)           ; as-you-type code completion
        ; secondwtq: why replacing ivy w/ helm?
        ;;(helm             ; the *other* search engine for love and life
        ;; +fuzzy)          ; enable fuzzy search backend for helm
@@ -30,13 +31,13 @@
       ;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        ;; doom-dashboard    ; a nifty splash screen for Emacs
-       doom-modeline     ; a snazzy Atom-inspired mode-line
+       ;;doom-modeline     ; a snazzy Atom-inspired mode-line
        ; temporarily disabled this because it's somewhat disturbing
        ; doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
        fci		 ; a 'fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-       ;modeline          ; snazzy, Atom-inspired modeline, plus API
+       modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
        treemacs		 ; a project drawer, like neotree but cooler
@@ -55,9 +56,9 @@
        fold              ; (nigh) universal code folding
       ;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
-       multiple-cursors  ; editing in many places at once
+      ;multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
-       rotate-text       ; cycle region at point between text candidates
+      ;rotate-text       ; cycle region at point between text candidates
 
        :emacs
        (dired             ; making dired pretty [functional]
@@ -79,12 +80,12 @@
        (flycheck         ; tasing you for every semicolon you forget
         +childframe)     ; use childframes for error popups (Emacs 26+ only)
        flyspell          ; tasing you for misspelling mispelling
-       gist              ; interacting with github gists
+      ;gist              ; interacting with github gists
        ;; lsp
       macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
-       password-store    ; password manager for nerds
+      ;password-store    ; password manager for nerds
        pdf               ; pdf enhancements
       ;prodigy          ; TODO managing external services & code builders
       ;rgb               ; creating color strings
@@ -161,7 +162,7 @@
 
        :collab
       ;floobits		 ; peer programming for a price
-       impatient-mode
+      ;impatient-mode
 
        :config
        ;; for literate config users. This will tangle+compile a config.org
