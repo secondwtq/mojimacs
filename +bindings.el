@@ -35,6 +35,16 @@
    "M-9"   (λ! (+workspace/switch-to 8))
    "M-0" #'+workspace/switch-to-last)
 
+   "s-o" #'counsel-find-file
+   "s-s" #'save-buffer
+   "s-z" #'undo-tree-undo
+   "s-x" #'evil-delete-char
+   "s-c" #'evil-yank
+   "s-v" #'evil-paste-after
+   "s-q" #'save-buffers-kill-terminal
+
+   ;; "s-x" #'counsel-M-x
+
     (:leader
       (:desc "ALT. Buffer" :nv "TAB" #'evil-switch-to-windows-last-buffer)
 

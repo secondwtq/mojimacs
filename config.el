@@ -174,6 +174,8 @@ By default, this shows the information specified by `global-mode-string'."
 
 ;; (setq confirm-kill-emacs nil)
 (setq recentf-exclude '("~$" "/tmp/" "/ssh:" "/sudo:"))
+(setq idle-update-delay 0.8)
+(setq imenu-auto-rescan t)
 (imenu-list-minor-mode)
 (which-function-mode 1)
 
