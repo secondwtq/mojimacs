@@ -33,12 +33,48 @@
  :background "#ffffff"
  :family "Lucida Grande")
 
+(set-face-attribute
+ 'mode-line-inactive nil
+ :family "Lucida Grande"
+ :inherit 'mode-line)
+
+(after! doom-modeline
+  (doom-modeline-def-segment misc-info-always
+    "Mode line construct for miscellaneous information.
+By default, this shows the information specified by `global-mode-string'."
+    (replace-regexp-in-string (regexp-quote "%")
+                              "%%%%"
+                              (format-mode-line mode-line-misc-info)
+                              t t))
+  (doom-modeline-def-segment vcs-always
+    "Displays the current branch, colored based on its state."
+    (when-let ((icon (or doom-modeline--vcs-icon (doom-modeline--update-vcs-icon)))
+               (text (or doom-modeline--vcs-text (doom-modeline-update-vcs-text))))
+      (concat
+       (propertize "  " 'face 'mode-line)
+       (concat icon doom-modeline-vspc text)
+       (propertize " " 'face 'mode-line))))
+  (doom-modeline-def-modeline 'modeline-custom
+    '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
+    '(misc-info-always persp-name lsp irc mu4e github debug fancy-battery minor-modes input-method buffer-encoding major-mode process vcs-always checker))
+  (defun setup-custom-doom-modeline ()
+    (doom-modeline-set-modeline 'modeline-custom 'default))
+  (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
+  (set-face-attribute
+    'doom-modeline-inactive-bar nil
+    :inherit 'mode-line))
+
 (custom-set-faces
   '(default ((t (:background "#ffffff")))))
 
 (setq-default line-spacing 1)
 (setq scroll-margin 3)
-(setq doom-modeline-height 20)
+(setq doom-modeline-height 1)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+;; (setq doom-modeline-minor-modes t)
+(setq doom-modeline-persp-name t)
+(setq doom-modeline-checker-simple-format t)
 ; (setq-default tide-node-executable "/Users/ooolive/.nvm/versions/node/v7.7.2/bin/node")
 
 ;;(let ((paths '(
@@ -138,6 +174,8 @@
 
 ;; (setq confirm-kill-emacs nil)
 (setq recentf-exclude '("~$" "/tmp/" "/ssh:" "/sudo:"))
+(imenu-list-minor-mode)
+(which-function-mode 1)
 
 ;; (setq doom-line-number-pad-char ?\u2002)
 
