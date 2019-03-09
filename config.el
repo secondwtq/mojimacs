@@ -28,16 +28,6 @@
 ;; a little knowledge of Chinese would be great
 (setq doom-unicode-font (font-spec :family "Source Han Serif SC"))
 
-(set-face-attribute
- 'mode-line nil
- :background "#ffffff"
- :family "Lucida Grande")
-
-(set-face-attribute
- 'mode-line-inactive nil
- :family "Lucida Grande"
- :inherit 'mode-line)
-
 (after! doom-modeline
   (doom-modeline-def-segment misc-info-always
     "Mode line construct for miscellaneous information.
@@ -61,8 +51,8 @@ By default, this shows the information specified by `global-mode-string'."
     (doom-modeline-set-modeline 'modeline-custom 'default))
   (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
   (set-face-attribute
-    'doom-modeline-inactive-bar nil
-    :inherit 'mode-line))
+   'doom-modeline-inactive-bar nil
+   :inherit 'mode-line))
 
 (custom-set-faces
   '(default ((t (:background "#ffffff")))))
@@ -96,13 +86,11 @@ By default, this shows the information specified by `global-mode-string'."
 ;; (dtrt-indent-mode 1)
 
 (global-visual-line-mode t)
+(setq +ivy-buffer-preview t)
+(setq +ivy-buffer-icons t)
+(setq cursor-in-non-selected-windows t)
 
 ;; how she interacts
-
-(after! smartparens
-  (sp-with-modes 'tuareg-mode
-    (sp-local-pair "'" nil :actions nil)
-    (sp-local-pair "`" nil :actions nil)))
 
 (after! caml
   (set-face-attribute
@@ -145,6 +133,12 @@ By default, this shows the information specified by `global-mode-string'."
    (:leader
      :n "=" #'clang-format-region
 )))
+
+;; (def-package! ivy-posframe
+;;   :after (ivy)
+;;   :config
+;;   (push '(t . ivy-posframe-display-at-frame-center) ivy-display-functions-alist)
+;;   (ivy-posframe-enable))
 
 ;; github.com/hlissner/doom-emacs/tree/master/modules/completion/company
 ;; (require 'company)
@@ -228,25 +222,43 @@ By default, this shows the information specified by `global-mode-string'."
 ; make custom
 
 ; TODO: adapt to both Emacs 25 & 26
-(set-face-attribute
- ; 'linum
- 'line-number
- nil
- :foreground "#aaaeb1"
- :height 72
- :family "Iosevka Term"
- )
-(set-face-attribute
- ; 'nlinum-relative-current-face
- 'line-number-current-line
- nil
- :foreground "#51667b"
- ; :weight 'semi-bold
- ; TODO: it's (hl-line linum)
- :inherit
- ; 'linum
- 'line-number
- )
+(defun setup-faces ()
+  (set-face-attribute
+   'mode-line nil
+   :background "#ffffff"
+   :family "Lucida Grande")
+  (set-face-attribute
+   'mode-line-inactive nil
+   :family "Lucida Grande"
+   :inherit 'mode-line)
+  (set-face-attribute
+   'line-number  ; 'linum
+   nil
+   :foreground "#aaaeb1"
+   :height 72
+   :family "Iosevka Term"
+   )
+  (set-face-attribute
+   'line-number-current-line  ; 'nlinum-relative-current-face
+   nil
+   :foreground "#51667b"
+; :weight 'semi-bold
+; TODO: it's (hl-line linum)
+   :inherit
+   'line-number ; 'linum
+   ))
+
+(add-hook 'doom-load-theme-hook #'setup-faces)
+
+(defun disable-all-minor-modes ()
+  (interactive)
+  (mapc
+   (lambda (mode-symbol)
+     (when (functionp mode-symbol)
+       ;; some symbols are functions which aren't normal mode functions
+       (ignore-errors
+         (funcall mode-symbol -1))))
+   minor-mode-list))
 
 ;; ENVIRONMENT FOR:
 ;;  OCaml, Haskell, C/C++, TypeScript, Emacs Lisp
