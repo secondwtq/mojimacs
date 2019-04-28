@@ -45,7 +45,7 @@ By default, this shows the information specified by `global-mode-string'."
        (concat icon doom-modeline-vspc text)
        (propertize " " 'face 'mode-line))))
   (doom-modeline-def-modeline 'modeline-custom
-    '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
+    '(bar workspace-name window-number modals matches buffer-info remote-host buffer-position parrot selection-info)
     '(misc-info-always persp-name lsp irc mu4e github debug fancy-battery minor-modes input-method buffer-encoding major-mode process vcs-always checker))
   (defun setup-custom-doom-modeline ()
     (doom-modeline-set-modeline 'modeline-custom 'default))
@@ -108,17 +108,17 @@ By default, this shows the information specified by `global-mode-string'."
 ;; (defun tuareg-abbrev-hook () ())
 
 ; TODO: figure out the autoload problem ...
-(defun +ccls//enable ()
-  (when buffer-file-name
-    (require 'ccls)
-    (setq-local lsp-ui-sideline-show-symbol nil)
-    (lsp)))
+; (defun +ccls//enable ()
+;   (when buffer-file-name
+;     (require 'ccls)
+;     (setq-local lsp-ui-sideline-show-symbol nil)
+;     (lsp)))
 
-(def-package! ccls
-  :defer t
-  :init (add-hook! (c-mode c++-mode cuda-mode objc-mode) #'+ccls//enable)
-  :config
-  (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp))
+; (def-package! ccls
+;   :defer t
+;   :init (add-hook! (c-mode c++-mode cuda-mode objc-mode) #'+ccls//enable)
+;   :config
+;   (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp))
 
 (def-package! llvm-mode
   :load-path  "~/dotfiles/m-blobs")
@@ -170,7 +170,7 @@ By default, this shows the information specified by `global-mode-string'."
 (setq recentf-exclude '("~$" "/tmp/" "/ssh:" "/sudo:"))
 (setq idle-update-delay 0.8)
 (setq imenu-auto-rescan t)
-(imenu-list-minor-mode)
+; (imenu-list-minor-mode)
 (which-function-mode 1)
 
 ;; (setq doom-line-number-pad-char ?\u2002)
