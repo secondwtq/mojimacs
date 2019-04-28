@@ -30,12 +30,12 @@
 (package! llvm-mode :ignore t)
 (package! tablegen-mode :ignore t)
 
-(package! spinner) ; required by lsp-mode
-(package! lsp-mode)
-(package! lsp-ui)
-(package! company-lsp)
+; (package! spinner) ; required by lsp-mode
+; (package! lsp-mode)
+; (package! lsp-ui)
+; (package! company-lsp)
 
-(package! ccls)
+; (package! ccls)
 
 (package! awesome-tab :recipe (:fetcher github :repo "manateelazycat/awesome-tab"))
 
