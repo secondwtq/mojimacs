@@ -13,7 +13,11 @@
   (setq evil-want-integration t
         evil-want-keybinding nil))
 
-(doom! :completion
+(doom! :input
+       chinese
+       ;;japanese
+
+       :completion
        (company          ; the ultimate code completion backend
         +auto
         +childframe)           ; as-you-type code completion
@@ -58,6 +62,7 @@
       ;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
       ;multiple-cursors  ; editing in many places at once
+      ;;objed            ; text object editing for the innocent
       ;parinfer          ; turn lisp into python, sort of
       ;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
@@ -68,11 +73,14 @@
         +icons          ; colorful icons for dired-mode
          )
        electric          ; smarter, keyword-based electric-indent
-       eshell            ; a consistent, cross-platform shell (WIP)
-       imenu             ; an imenu sidebar and searchable code index
-       term              ; terminals in Emacs
-       ; eshell vs. term?
        vc                ; version-control and Emacs, sitting in a tree
+
+       :term
+       ;;eshell            ; a consistent, cross-platform shell (WIP)
+       ;;term              ; terminals in Emacs
+       ;;vterm             ; another terminals in Emacs
+       ; eshell vs. term?
+
 
        :tools
       ;;ansible
@@ -92,7 +100,7 @@
       macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
-      ;password-store    ; password manager for nerds
+      ;pass              ; password manager for nerds
        pdf               ; pdf enhancements
       ;prodigy          ; TODO managing external services & code builders
       ;rgb               ; creating color strings
@@ -100,10 +108,9 @@
        tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp
       ;wakatime
-       ;;vterm             ; another terminals in Emacs
 
        :lang
-       ;agda              ; types of types of types of types...
+       agda              ; types of types of types of types...
        ;assembly          ; assembly for fun or debugging
        (cc +lsp); C/C++/Obj-C madness
        ;clojure           ; java with a lisp
@@ -117,6 +124,7 @@
        ;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;ess               ; emacs speaks statistics
+       ;;fsharp           ; ML stands for Microsoft's Langauge
        ;go                ; the hipster dialect
        (haskell +intero) ; a language that's lazier than I am
        ;hy                ; readability of scheme w/ speed of python
@@ -147,23 +155,26 @@
        ;qt                ; the 'cutest' gui framework ever
        ;racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
-       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;scala             ; java, but good
-       (sh                ; she sells (ba|z|fi)sh shells on the C xor
-	 ;+fish
-	 )
+       sh                ; she sells (ba|z|fi)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
        ;swift             ; who asked for emoji variables?
        ;terra             ; Earth and Moon in alignment for performance.
        ;web               ; the tubes
        ;;vala              ; GObjective-C
 
+       :email
+       ;;(mu4e +gmail)
+       ;;notmuch
+       ;;(wanderlust +gmail)
+
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
        ;; should be loaded late.
        :app
-      ;(email +gmail)    ; emacs as an email client
+       ;; calendar
       ;irc               ; how neckbeards socialize
       ;(rss +org)        ; emacs as an RSS reader
       ;twitter           ; twitter client https://twitter.com/vnought
