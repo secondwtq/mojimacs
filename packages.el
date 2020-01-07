@@ -37,6 +37,6 @@
 
 ; (package! ccls)
 
-(package! awesome-tab :recipe (:fetcher github :repo "manateelazycat/awesome-tab"))
+; (package! awesome-tab :recipe (:fetcher github :repo "manateelazycat/awesome-tab"))
 
 ;; (package! ivy-posframe)

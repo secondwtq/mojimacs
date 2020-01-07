@@ -13,6 +13,7 @@
       (neotree-find origin-buffer-file-name))))
 
 (load! "+bindings")
+(load! "llvm")
 
 ;; how she looks
 ;; www.emacswiki.org/emacs/TransparentEmacs EmacsWiki: Transparent Emacs
@@ -44,15 +45,17 @@ By default, this shows the information specified by `global-mode-string'."
        (propertize "  " 'face 'mode-line)
        (concat icon doom-modeline-vspc text)
        (propertize " " 'face 'mode-line))))
+  ; TODO: fancy-battery
   (doom-modeline-def-modeline 'modeline-custom
     '(bar workspace-name window-number modals matches buffer-info remote-host buffer-position parrot selection-info)
-    '(misc-info-always persp-name lsp irc mu4e github debug fancy-battery minor-modes input-method buffer-encoding major-mode process vcs-always checker))
+    '(misc-info-always persp-name lsp irc mu4e github debug minor-modes input-method buffer-encoding major-mode process vcs-always checker))
   (defun setup-custom-doom-modeline ()
     (doom-modeline-set-modeline 'modeline-custom 'default))
   (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
-  (set-face-attribute
-   'doom-modeline-inactive-bar nil
-   :inherit 'mode-line))
+  ; (set-face-attribute
+  ;  'doom-modeline-inactive-bar nil
+  ;  :inherit 'mode-line)
+  )
 
 (custom-set-faces
   '(default ((t (:background "#ffffff")))))
@@ -89,6 +92,10 @@ By default, this shows the information specified by `global-mode-string'."
 (setq +ivy-buffer-preview t)
 (setq +ivy-buffer-icons t)
 (setq cursor-in-non-selected-windows t)
+(setq-default tab-width 2)
+(after! cc-mode
+  (setq-default c-basic-offset tab-width)
+  (setq-default c-default-style "llvm"))
 
 ;; how she interacts
 
@@ -150,13 +157,13 @@ By default, this shows the information specified by `global-mode-string'."
   (setq neo-hidden-regexp-list (append '("^\\.DS_Store$") neo-hidden-regexp-list))
   )
 
-(def-package! awesome-tab
-  :config
-  (set-face-attribute 'awesome-tab-default nil :height 88 :background "#dfdfdf" :foreground "#dfdfdf" :inherit 'default)
-  (setq awesome-tab-background-color "#dfdfdf")
-  (set-face-attribute 'awesome-tab-selected nil :background "#dfdfdf" :foreground "#000000")
-  (set-face-attribute 'awesome-tab-unselected nil :background "#dfdfdf" :foreground "#666666")
-  (awesome-tab-mode t))
+; (def-package! awesome-tab
+;   :config
+;   ; (set-face-attribute 'awesome-tab-default nil :height 88 :background "#dfdfdf" :foreground "#dfdfdf" :inherit 'default)
+;   (setq awesome-tab-background-color "#dfdfdf")
+;   (set-face-attribute 'awesome-tab-selected nil :background "#dfdfdf" :foreground "#000000")
+;   (set-face-attribute 'awesome-tab-unselected nil :background "#dfdfdf" :foreground "#666666")
+;   (awesome-tab-mode t))
 
 ;; (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
 ;; (semantic-mode 1)
