@@ -93,6 +93,10 @@
        ;;vterm             ; another terminals in Emacs
        ; eshell vs. term?
 
+       :checkers
+       syntax              ; tasing you for every semicolon you forget
+       spell             ; tasing you for misspelling mispelling
+       ;;grammar           ; tasing grammar mistake every you make
 
        :tools
       ;;ansible
@@ -102,9 +106,6 @@
        editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
       (eval +overlay)     ; run code, run (also, repls)
-       (flycheck         ; tasing you for every semicolon you forget
-        +childframe)     ; use childframes for error popups (Emacs 26+ only)
-       flyspell          ; tasing you for misspelling mispelling
       ;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
@@ -137,6 +138,7 @@
        ;ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp           ; ML stands for Microsoft's Langauge
+       ;;fstar            ; (dependent) types and (monadic) effects and Z3
        ;go                ; the hipster dialect
        (haskell +dante)  ; a language that's lazier than I am
        ;hy                ; readability of scheme w/ speed of python
@@ -190,7 +192,6 @@
       ;irc               ; how neckbeards socialize
       ;(rss +org)        ; emacs as an RSS reader
       ;twitter           ; twitter client https://twitter.com/vnought
-      ;;write             ; emacs for writers (fiction, notes, papers, etc.)
 
        :collab
       ;floobits		 ; peer programming for a price

@@ -37,18 +37,18 @@ By default, this shows the information specified by `global-mode-string'."
                               "%%%%"
                               (format-mode-line mode-line-misc-info)
                               t t))
-  (doom-modeline-def-segment vcs-always
-    "Displays the current branch, colored based on its state."
-    (when-let ((icon (or doom-modeline--vcs-icon (doom-modeline--update-vcs-icon)))
-               (text (or doom-modeline--vcs-text (doom-modeline-update-vcs-text))))
-      (concat
-       (propertize "  " 'face 'mode-line)
-       (concat icon doom-modeline-vspc text)
-       (propertize " " 'face 'mode-line))))
+  ; (doom-modeline-def-segment vcs-always
+  ;   "Displays the current branch, colored based on its state."
+  ;   (when-let ((icon (or doom-modeline--vcs-icon (doom-modeline--update-vcs-icon)))
+  ;              (text (or doom-modeline--vcs-text (doom-modeline-update-vcs-text))))
+  ;     (concat
+  ;      (propertize "  " 'face 'mode-line)
+  ;      (concat icon doom-modeline-vspc text)
+  ;      (propertize " " 'face 'mode-line))))
   ; TODO: fancy-battery
   (doom-modeline-def-modeline 'modeline-custom
     '(bar workspace-name window-number modals matches buffer-info remote-host buffer-position parrot selection-info)
-    '(misc-info-always persp-name lsp irc mu4e github debug minor-modes input-method buffer-encoding major-mode process vcs-always checker))
+    '(misc-info-always persp-name lsp irc mu4e github debug minor-modes input-method buffer-encoding major-mode process checker))
   (defun setup-custom-doom-modeline ()
     (doom-modeline-set-modeline 'modeline-custom 'default))
   (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
@@ -104,11 +104,11 @@ By default, this shows the information specified by `global-mode-string'."
         'caml-types-expr-face nil
         :background "#fcd975"))
 
-(after! org
-  (set-face-attribute
-  'table-cell nil
-   :foreground "black"
-   :background "#ffffff"))
+; (after! org
+;   (set-face-attribute
+;   'table-cell nil
+;    :foreground "black"
+;    :background "#ffffff"))
 
 ;; github.com/ocaml/tuareg/issues/162
 ;; Missing function tuareg-abbrev-hook being called · Issue #162 · ocaml/tuareg
