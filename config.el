@@ -127,10 +127,10 @@ By default, this shows the information specified by `global-mode-string'."
 ;   :config
 ;   (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp))
 
-(def-package! llvm-mode
+(use-package llvm-mode
   :load-path  "~/dotfiles/m-blobs")
 
-(def-package! tablegen-mode
+(use-package tablegen-mode
   :load-path "~/dotfiles/m-blobs"
   :defer t
   :mode "\\.td\\'"
