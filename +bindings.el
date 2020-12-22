@@ -24,6 +24,7 @@
 (map!
 
  (:map override
+
    "M-1"   (λ! (+workspace/switch-to 0))
    "M-2"   (λ! (+workspace/switch-to 1))
    "M-3"   (λ! (+workspace/switch-to 2))
@@ -42,6 +43,8 @@
    "s-c" #'evil-yank
    "s-v" #'evil-paste-after
    "s-q" #'save-buffers-kill-terminal
+
+   "M-a"   (λ! (scroll-up-whole))
 
    ;; "s-x" #'counsel-M-x
 

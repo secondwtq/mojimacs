@@ -13,21 +13,30 @@
       (neotree-find origin-buffer-file-name))))
 
 (load! "+bindings")
-(load! "llvm")
+; (load! "llvm")
 
 ;; how she looks
 ;; www.emacswiki.org/emacs/TransparentEmacs EmacsWiki: Transparent Emacs
 ;; (push '(alpha . (100 . 95)) default-frame-alist)
-(push '(alpha . (97 . 96)) default-frame-alist)
+(push '(alpha . (100 . 96)) default-frame-alist)
 
 (setq doom-theme 'doom-one-light)
 ;; mostly writes in monospace w/ aesthetics
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12))
 (setq doom-font (font-spec :family "Input Mono Narrow" :size 13 :weight 'regular))
-(setq doom-variable-pitch-font (font-spec :family "Lucida Grande" :size 13))
+;; (setq doom-variable-pitch-font (font-spec :family "Lucida Grande" :size 13))
+(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
 ;; (setq doom-big-font ())
 ;; a little knowledge of Chinese would be great
 (setq doom-unicode-font (font-spec :family "Source Han Serif SC"))
+
+; (set-face-attribute
+;  'company-box-annotation nil
+;  :height 86)
+; (set-face-attribute
+;  'company-box-candidate nil
+;  :height 86)
+(custom-set-default 'company-box-enable-icon nil)
 
 (after! doom-modeline
   (doom-modeline-def-segment misc-info-always
@@ -52,6 +61,7 @@ By default, this shows the information specified by `global-mode-string'."
   (defun setup-custom-doom-modeline ()
     (doom-modeline-set-modeline 'modeline-custom 'default))
   (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
+  (setq doom-modeline-height 1)
   ; (set-face-attribute
   ;  'doom-modeline-inactive-bar nil
   ;  :inherit 'mode-line)
@@ -62,7 +72,6 @@ By default, this shows the information specified by `global-mode-string'."
 
 (setq-default line-spacing 1)
 (setq scroll-margin 3)
-(setq doom-modeline-height 1)
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-major-mode-color-icon t)
 ;; (setq doom-modeline-minor-modes t)
@@ -82,12 +91,13 @@ By default, this shows the information specified by `global-mode-string'."
 ;;)
 
 ; TODO: disable it in systems w/ IME
-(require 'fcitx)
-(fcitx-aggressive-setup)
+;(require 'fcitx)
+;(fcitx-aggressive-setup)
 
 ;; (require 'dtrt-indent)
 ;; (dtrt-indent-mode 1)
 
+;; (setq magit-git-debug t)
 (global-visual-line-mode t)
 (setq +ivy-buffer-preview t)
 (setq +ivy-buffer-icons t)
@@ -171,7 +181,7 @@ By default, this shows the information specified by `global-mode-string'."
 (after! fill-column-indicator
   (setq fci-rule-color "#e0e0e0")
   ; TODO: why this assignment does not work?
-  (setq fci-column 96))
+  (setq fci-column 80))
 
 ;; (setq confirm-kill-emacs nil)
 (setq recentf-exclude '("~$" "/tmp/" "/ssh:" "/sudo:"))
@@ -233,10 +243,12 @@ By default, this shows the information specified by `global-mode-string'."
   (set-face-attribute
    'mode-line nil
    :background "#ffffff"
-   :family "Lucida Grande")
+   :height 96
+   :family "Go")
   (set-face-attribute
    'mode-line-inactive nil
-   :family "Lucida Grande"
+   :family "Go"
+   :height 96
    :inherit 'mode-line)
   (set-face-attribute
    'line-number  ; 'linum
