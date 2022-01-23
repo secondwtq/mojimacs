@@ -114,6 +114,10 @@ By default, this shows the information specified by `global-mode-string'."
         'caml-types-expr-face nil
         :background "#fcd975"))
 
+(setq-hook! python-mode python-indent-offset 2)
+(setq-hook! javascript-mode js-indent-level 2)
+(setq-hook! js2-mode js2-basic-offset 2)
+
 ; (after! org
 ;   (set-face-attribute
 ;   'table-cell nil
