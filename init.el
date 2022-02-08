@@ -50,7 +50,7 @@
         ; +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;;tabs              ; a tab bar for Emacs
-       ;;treemacs          ; a project drawer, like neotree but cooler
+       treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -150,7 +150,7 @@
        ;hy                ; readability of scheme w/ speed of python
        idris             ; a language you can depend on
        ;;json             ; At least it ain't XML
-       ;(java +meghanada) ; the poster child for carpal tunnel syndrome
+       ;(java +lsp)      ; the poster child for carpal tunnel syndrome
        (javascript +lsp)  ; all(hope(abandon(ye(who(enter(here))))))
        ;julia             ; a better, faster MATLAB
        ;;kotlin           ; a better, slicker Java(Script)
